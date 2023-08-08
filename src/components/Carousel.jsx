@@ -1,6 +1,6 @@
 import CardCarousel from '../components/CardCarousel'
 import Arrow from '../components/Arrow'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Carousel({ data }) {
 
