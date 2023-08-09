@@ -1,12 +1,13 @@
-import React from 'react'
-import NavBar from './NavBar'
+import React from 'react';
+import NavBar from './NavBar';
+import { Outlet } from 'react-router-dom';
 
-export default function Main({ children }) {
+export default function MainLayout() {
   return (
     <>
       <div className="flex flex-col w-full min-h-screen bg-[#EBEBEB]">
         <NavBar />
-        {children}
+        <Outlet />
       </div>
     </>
   )

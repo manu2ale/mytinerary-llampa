@@ -1,5 +1,6 @@
 import React from 'react'
 import LoginButton from '../components/LoginButton.jsx'
+import { Link as Anchor } from 'react-router-dom'
 
 export default function NavBar() {
   return (
@@ -8,7 +9,7 @@ export default function NavBar() {
       <a className='text-3xl' href="#">MyTinerary</a>
       <ul className="flex gap-5">
         <li><a href="#">Home</a></li>
-        <li><a href="#">Cities</a></li>
+        <li><Anchor to='/cities'>Cities</Anchor></li>
         <li><LoginButton title='Login' to='#' /></li>
       </ul>
     </nav>

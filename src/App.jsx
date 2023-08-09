@@ -1,16 +1,11 @@
-import { useState } from 'react'
-import MainLayout from './layouts/MainLayout'
-import Index from './pages/Index'
+import { RouterProvider } from 'react-router-dom';
+import router from "./router";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <MainLayout>
-      <Index />
-    </MainLayout>
-
+    <RouterProvider router={router} />
   )
 }
 
-export default App
+export default App;
