@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Button from '../components/Button'
 import Carousel from '../components/Carousel'
 import axios from 'axios'
+import apiURL  from '../apiURL.js'
 
 export default function Index() {
 
@@ -10,8 +11,9 @@ export default function Index() {
 
 useEffect(
 ()=>{
-  axios('/data.json')
-    .then(res=>setData(res.data))
+  axios(apiURL+'cities/carousel')
+    // .then(res=>console.log(res.data.data_carousel))
+    .then(res=>setData(res.data.data_carousel))
     .catch(err=>console.log(err))
 },
 []

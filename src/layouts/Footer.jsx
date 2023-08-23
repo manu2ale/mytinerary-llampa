@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link as Anchor } from 'react-router-dom'
 
 export default function 
 () {
   return (
     <footer className="h-[50px] px-10  flex w-full justify-around items-center bg-zinc-800">
-        <img className='w-[100px]' src="./img/whitelogo.png" />
+        <Anchor to='/home'><img className='w-[100px]' src="./img/whitelogo.png" /></Anchor>
         <div className='flex gap-6'>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
