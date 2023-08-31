@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import Button from '../components/Button'
 import Carousel from '../components/Carousel'
-import axios from 'axios'
-import apiURL  from '../apiURL.js'
+import { useSelector,useDispatch } from 'react-redux';
+import city_actions from '../store/actions/cities'
+const { read_carousel } = city_actions;
+
 
 export default function Index() {
-
-  const [data,setData] = useState([])
-
-
-useEffect(
-()=>{
-  axios(apiURL+'cities/carousel')
-    // .then(res=>console.log(res.data.data_carousel))
-    .then(res=>setData(res.data.data_carousel))
-    .catch(err=>console.log(err))
-},
-[]
-)
-
+  const dispatch = useDispatch();
+  
+  useEffect(
+    ()=>{
+      if (carousel.length===0) {
+        dispatch(read_carousel())
+      }
+    },
+    []
+    )
+    const carousel = useSelector(store=>store.cities.carousel);
+    
   return (
     <>
         <main className="flex grow justify-center items-center bg-cover bg-center" style={{backgroundImage: `url(${'../img/index.jpg'})`}}>
@@ -42,7 +42,7 @@ useEffect(
               <Button title='View More' to='/cities'/>
             </div>
 
-            <Carousel data={data} />
+            <Carousel data={carousel} />
           </section>
         </main>
     </>

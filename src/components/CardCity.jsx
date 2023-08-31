@@ -6,7 +6,7 @@ export default function CardCity({ imgUrl, city, country, id }) {
     <Anchor to={'/city/'+id} className='flex w-[174px] h-[120px] relative hover:cursor-pointer text-white font-semibold
                                         sm:w-[374px] sm:h-[250px]
     '>
-      <img className='object-cover rounded-xl brightness-75 hover:brightness-90' src={imgUrl}/>
+      <img className='object-cover rounded-xl brightness-50 hover:brightness-75' src={imgUrl}/>
       <p className='absolute top-0  h-10 w-full  rounded-t-xl text-center align-middle text-xl sm:text-2xl'>{city}</p>
       <p className='absolute top-8  h-10 w-full  text-center align-middle'>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 23" fill="white" className="w-4 h-4 inline">

@@ -1,26 +1,25 @@
 import { useState,useEffect,useRef } from "react";
-import axios from "axios";
-import apiURL from "../apiURL";
 import CardCity from "../components/CardCity";
+import { useSelector,useDispatch } from "react-redux";
+import city_actions from "../store/actions/cities";
+const { read_cities } = city_actions
+
 
 export default function Cities() {
-const [cities,setCities] = useState([]);
-const [reEffect, setREEffect] = useState(true);
-const [errorValue,setErrorValue] = useState(false)
-const text = useRef();
-useEffect(
-  ()=> {
-    axios(apiURL+'cities?city='+text.current.value.trim())
-    // .then(res=>console.log(res.data.response))
-    .then(res=>setCities(res.data.response), setErrorValue(false))
-    .catch(err=>setErrorValue(true))
-    // .catch(err=>console.log(err))
-  },[reEffect]
-)
-function handleFilter() {
-  console.log(text.current.value);
-  setREEffect(!reEffect);
-}
+  const [reEffect, setReffect] = useState(true);
+  const text = useRef();
+  const dispatch = useDispatch();
+  
+  useEffect(
+    ()=> {
+      dispatch(read_cities({ text:text.current.value?.trim()}));
+    },[reEffect]
+    )
+    const cities = useSelector(store=>store.cities.cities)
+  function handleFilter() {
+    // console.log(text.current.value);
+    setReffect(!reEffect);
+  }
 
   return (
     <div className="flex flex-col flex-grow justify-between items-center">
@@ -37,7 +36,7 @@ function handleFilter() {
           <input ref={text} type="text" onKeyUp={handleFilter}  className="h-12 w-[360px] rounded-full pl-14 outline-none text-xl text-gray-600 md:w-[672px]" placeholder="Search your city"/>
         </div>
         <div className="flex flex-grow flex-wrap justify-center items-center gap-3 pb-6">
-          {cities.length > 0 && errorValue == false ?
+          {cities.length > 0 ?
              (cities.map(each=><CardCity key={each._id} city={each.city} imgUrl={each.photo} country={each.country} id={each._id}/>)) 
              : 
              (<div className="text-center text-xl">

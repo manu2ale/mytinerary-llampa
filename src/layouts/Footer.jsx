@@ -5,7 +5,7 @@ export default function
 () {
   return (
     <footer className="h-[50px] px-10  flex w-full justify-around items-center bg-zinc-800">
-        <Anchor to='/home'><img className='w-[100px]' src="./img/whitelogo.png" /></Anchor>
+        <Anchor to='/home'><img className='w-[100px]' src="/img/whitelogo.png" /></Anchor>
         <div className='flex gap-6'>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
