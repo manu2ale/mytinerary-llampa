@@ -39,7 +39,7 @@ export default function CityDetail() {
         </div>
     </div>
     <div>
-        {show && <ShowItineraries />}
+        {show && <ShowItineraries data={itineraries}/>}
         {/* <h1 className='animate-pulse text-3xl py-6'>Site under construction</h1> */}
     </div>
     </>
