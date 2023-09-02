@@ -18,7 +18,7 @@ export default function
 
             <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-7 w-7 text-[#c13584] cursor-pointer hover:text-white"
+                className="h-7 w-7  text-[#c13584] cursor-pointer hover:text-white"
                 fill="currentColor"
                 viewBox="0 0 24 24">
                 <path

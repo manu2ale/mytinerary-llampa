@@ -24,24 +24,22 @@ export default function CityDetail() {
     const city = useSelector(store=>store.cities.city);
     const itineraries = useSelector(store=>store.itineraries.itineraries_from_city);
     // console.log(itineraries)
-    
     // console.log(city)
   return (
     <>
-    <div className='flex flex-grow flex-col justify-center items-center bg-cover bg-center text-white' style={{backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),url(${city.photo})`}}>
-        <h1 className="text-5xl font-bold md:text-6xl">{city.city}</h1>
-        <p className="py-12 text-xl font-medium w-[360px] 
-                      md:text-2xl md:w-[762px]
-        ">{city.description}</p>
-        <div className="flex gap-12">
-          <Button title='Back to cities' to='/cities'/>
-          <button onClick={()=>setShow(!show)} className="bg-[#4F46E5] py-3 px-12 rounded-lg text-2xl text-white">View Itineraries ↓</button>
-        </div>
-    </div>
-    <div>
-        {show && <ShowItineraries data={itineraries}/>}
-        {/* <h1 className='animate-pulse text-3xl py-6'>Site under construction</h1> */}
-    </div>
+    
+      <div className='flex min-h-screen flex-auto flex-col justify-center items-center py-4 bg-cover bg-center text-white md:py-0' style={{backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),url(${city.photo})`}}>
+          <h1 className="text-5xl font-bold md:text-6xl">{city.city}</h1>
+          <p className="py-12 px-2 text-xl font-medium w-[360px] 
+                        md:text-2xl md:w-[762px] sm:px-0 sm:w-10/12
+          ">{city.description}</p>
+          <div className="flex gap-12">
+            <Button title='Back to cities' to='/cities'/>
+            <a href="#itinerary"><button onClick={()=>setShow(!show)} className="py-3 px-2 bg-[#4F46E5] rounded-lg  text-lg text-white sm:text-2xl sm:px-12">{show ? "Hide Itineraries ↑":'View Itineraries ↓'} </button></a>
+          </div>
+      </div>
+          {show && <ShowItineraries data={itineraries}/>}
+
     </>
   )
 }
