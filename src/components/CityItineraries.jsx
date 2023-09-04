@@ -1,4 +1,4 @@
-import CardItinerary from "./CardItinerary"
+import CardItinerary from "./CardItinerary";
 
 export default function CityItineraries({data}) {
   return (

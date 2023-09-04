@@ -35,7 +35,7 @@ export default function CityDetail() {
           ">{city.description}</p>
           <div className="flex gap-12">
             <Button title='Back to cities' to='/cities'/>
-            <a href="#itinerary"><button onClick={()=>setShow(!show)} className="py-3 px-2 bg-[#4F46E5] rounded-lg  text-lg text-white sm:text-2xl sm:px-12">{show ? "Hide Itineraries ↑":'View Itineraries ↓'} </button></a>
+            <a href="#itinerary"><button onClick={()=>setShow(!show)} className="py-3 px-2 bg-[#4F46E5] rounded-lg  text-lg text-white sm:text-2xl sm:px-12">{show ? "Hide ↑":'View Itineraries ↓'} </button></a>
           </div>
       </div>
           {show && <ShowItineraries data={itineraries}/>}
