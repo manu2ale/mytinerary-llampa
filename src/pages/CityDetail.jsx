@@ -27,7 +27,6 @@ export default function CityDetail() {
     // console.log(city)
   return (
     <>
-    
       <div className='flex min-h-screen flex-auto flex-col justify-center items-center py-4 bg-cover bg-center text-white md:py-0' style={{backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),url(${city.photo})`}}>
           <h1 className="text-5xl font-bold md:text-6xl">{city.city}</h1>
           <p className="py-12 px-2 text-xl font-medium w-[360px] 
@@ -39,7 +38,6 @@ export default function CityDetail() {
           </div>
       </div>
           {show && <ShowItineraries data={itineraries}/>}
-
     </>
   )
 }
