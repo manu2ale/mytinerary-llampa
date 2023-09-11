@@ -1,11 +1,14 @@
-import axios from "axios";
 import { useRef,useState } from "react";
-import apiUrl from '../apiURL';
 import { Link as Anchor } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import user_actions from "../store/actions/users";
+const { signup } = user_actions
+
 
 export default function SingUp() {
     let countries = ['Argentina','Brazil','Chile','Colombia','Ecuador','Paraguay','Peru','Uruguay'];
     const [viewPass,setViewPass] = useState(false);
+    let dispatch = useDispatch();
 
     const name= useRef();
     const lastName= useRef();
@@ -14,8 +17,7 @@ export default function SingUp() {
     const photo= useRef();
     const country= useRef();
 
-    async function handleSingUp() {
-    try {
+    function handleSingUp() {
         let data = {
             name: name.current.value.trim(),
             lastName: lastName.current.value.trim(),
@@ -25,13 +27,7 @@ export default function SingUp() {
             country: country.current.value
         }
         !data.photo&&delete data.photo;
-        await axios.post(
-            apiUrl+'auth/register', data
-        )
-        // console.log(data)    
-    } catch (error) {
-        console.log(error)        
-    }
+        dispatch(signup({data}));
 }
   return (
     <div className="flex flex-wrap w-full min-h-screen justify-center items-center bg-cover bg-center md:gap-12 xl:gap-48" style={{backgroundImage: `linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)),url('../img/backgroundLog.jpg')`}}>

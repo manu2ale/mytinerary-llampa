@@ -17,8 +17,8 @@ export default function Cities() {
     )
     const cities = useSelector(store=>store.cities.cities)
   function handleFilter() {
-    // console.log(text.current.value);
     setReffect(!reEffect);
+    // console.log(text.current.value);
   }
 
   return (

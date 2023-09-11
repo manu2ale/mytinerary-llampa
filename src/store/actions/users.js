@@ -2,6 +2,21 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import apiURL from "../../apiURL";
 
+const signup = createAsyncThunk(
+    'signup',
+    async(obj)=> {
+        try {
+            let data = await axios.post(apiURL+'auth/register',obj.data)
+            return {
+                user: data.data.response.user
+            }
+        } catch (error) {
+            return {
+                user: {},
+            }
+        }
+    }
+)
 const signin = createAsyncThunk(
     'signin',
     async(obj)=> {
@@ -10,12 +25,14 @@ const signin = createAsyncThunk(
             localStorage.setItem('token',data.data.response.token)
             return {
                 user: data.data.response.user,
-                token: data.data.response.token
+                token: data.data.response.token,
+                messages: []
             }
         } catch (error) {
             return {
                 user: {},
-                token: ''
+                token: '',
+                messages: error.response.data.messages || [error.response.data.message]
             }
         }
     }
@@ -62,5 +79,5 @@ const signout = createAsyncThunk(
         }
     }
 )
-const user_actions = { signin,signin_token,signout }
+const user_actions = { signup,signin,signin_token,signout }
 export default user_actions;

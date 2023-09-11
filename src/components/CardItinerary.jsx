@@ -1,6 +1,10 @@
 import { useState } from "react";
+import Activities from "./Activities";
+
+
 
 export default function CardItinerary({data, index}) {
+
   const [show,setShow] = useState(false);
   const [viewMore,setViewMore] = useState(false);
   let priceArray = [];
@@ -10,7 +14,7 @@ export default function CardItinerary({data, index}) {
   </svg>) }}
 
   return (
-  <div key={index} className="flex flex-col items-center my-6 max-w-3xl max-h-fit shadow-lg bg-white rounded-xl">
+  <div key={index} className="flex flex-col items-center my-6 max-w-2xl max-h-fit shadow-lg bg-white rounded-xl">
     <h1 className="py-5 text-center text-3xl font-semibold">{data.name}</h1>
     <img className="w-11/12 border border-black/30 rounded aspect-video object-cover" src={data.photo} alt="itinerary photo" />
     <div className="flex justify-between items-center w-11/12 px-1 py-6">
@@ -47,7 +51,7 @@ export default function CardItinerary({data, index}) {
         </div>
       </div>
       <button onClick={()=>setViewMore(!viewMore)} className="w-36 bg-[#4F46E5] py-2 my-6 rounded-lg text-xl text-white">{viewMore?'Hide':'View More'}</button>
-        {viewMore&&<h1 className='animate-pulse text-3xl py-6'>Under Construction</h1>}
+        {viewMore&& <Activities data={data._id} /> }
     </div>
     
     }

@@ -18,12 +18,13 @@ export default function CityDetail() {
         ()=> {
           dispatch(read_city({ id:id}));
           dispatch(read_itineraries_from_city({ id:id }))
+          
         },[]
     )
     
     const city = useSelector(store=>store.cities.city);
     const itineraries = useSelector(store=>store.itineraries.itineraries_from_city);
-    // console.log(itineraries)
+    console.log(itineraries)
     // console.log(city)
   return (
     <>
