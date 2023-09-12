@@ -5,7 +5,21 @@ module.exports = {
         './src/**/*.{js,jsx,ts,tsx}'
     ],
     theme: {
-        extend: {}
+        extend: {
+            keyframes: {
+                'slide-left': {
+                    '0%': {
+                        top: '-25rem',
+                    },
+                    '100%': {
+                        top: '0rem'
+                    }
+                }
+            },
+            animation: {
+                'slide-left': 'slide-from-left 3s'
+            }
+        }
     },
     variants: {},
     plugins: []

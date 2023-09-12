@@ -1,14 +1,260 @@
 import { useRef,useState } from "react";
-import { Link as Anchor } from "react-router-dom";
+import { Link as Anchor, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import user_actions from "../store/actions/users";
 const { signup } = user_actions
+import Swal from "sweetalert2";
 
 
 export default function SingUp() {
-    let countries = ['Argentina','Brazil','Chile','Colombia','Ecuador','Paraguay','Peru','Uruguay'];
+    let countries = [
+        "Afghanistan",
+        "Albania",
+        "Algeria",
+        "American Samoa",
+        "Andorra",
+        "Angola",
+        "Anguilla",
+        "Antarctica",
+        "Antigua and Barbuda",
+        "Argentina",
+        "Armenia",
+        "Aruba",
+        "Australia",
+        "Austria",
+        "Azerbaijan",
+        "Bahamas",
+        "Bahrain",
+        "Bangladesh",
+        "Barbados",
+        "Belarus",
+        "Belgium",
+        "Belize",
+        "Benin",
+        "Bermuda",
+        "Bhutan",
+        "Bolivia",
+        "Bonaire",
+        "Bosnia and Herzegovina",
+        "Botswana",
+        "Bouvet Island",
+        "Brazil",
+        "Bulgaria",
+        "Burkina Faso",
+        "Burundi",
+        "Cabo Verde",
+        "Cambodia",
+        "Cameroon",
+        "Canada",
+        "Cayman Islands",
+        "Central African Republic",
+        "Chad",
+        "Chile",
+        "China",
+        "Christmas Island",
+        "Cocos (Keeling) Islands",
+        "Colombia",
+        "Comoros",
+        "Congo",
+        "Cook Islands",
+        "Costa Rica",
+        "Croatia",
+        "Cuba",
+        "Curaçao",
+        "Cyprus",
+        "Czechia",
+        "Côte d'Ivoire",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic",
+        "Ecuador",
+        "Egypt",
+        "El Salvador",
+        "Equatorial Guinea",
+        "Eritrea",
+        "Estonia",
+        "Eswatini",
+        "Ethiopia",
+        "Faroe Islands",
+        "Fiji",
+        "Finland",
+        "France",
+        "French Guiana",
+        "French Polynesia",
+        "French Southern Territories",
+        "Gabon",
+        "Gambia",
+        "Georgia",
+        "Germany",
+        "Ghana",
+        "Gibraltar",
+        "Greece",
+        "Greenland",
+        "Grenada",
+        "Guadeloupe",
+        "Guam",
+        "Guatemala",
+        "Guernsey",
+        "Guinea",
+        "Guinea-Bissau",
+        "Guyana",
+        "Haiti",
+        "Heard Island and McDonald Islands",
+        "Holy See",
+        "Honduras",
+        "Hong Kong",
+        "Hungary",
+        "Iceland",
+        "India",
+        "Indonesia",
+        "Iran",
+        "Iraq",
+        "Ireland",
+        "Isle of Man",
+        "Israel",
+        "Italy",
+        "Jamaica",
+        "Japan",
+        "Jersey",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Korea",
+        "Kuwait",
+        "Kyrgyzstan",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
+        "Liberia",
+        "Libya",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+        "Macao",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Mali",
+        "Malta",
+        "Marshall Islands",
+        "Martinique",
+        "Mauritania",
+        "Mauritius",
+        "Mayotte",
+        "Mexico",
+        "Micronesia",
+        "Moldova",
+        "Monaco",
+        "Mongolia",
+        "Montenegro",
+        "Montserrat",
+        "Morocco",
+        "Mozambique",
+        "Myanmar",
+        "Namibia",
+        "Nauru",
+        "Nepal",
+        "Netherlands",
+        "New Caledonia",
+        "New Zealand",
+        "Nicaragua",
+        "Niger",
+        "Nigeria",
+        "Niue",
+        "Norfolk Island",
+        "Northern Mariana Islands",
+        "Norway",
+        "Oman",
+        "Pakistan",
+        "Palau",
+        "Palestine, State of",
+        "Panama",
+        "Papua New Guinea",
+        "Paraguay",
+        "Peru",
+        "Philippines",
+        "Pitcairn",
+        "Poland",
+        "Portugal",
+        "Puerto Rico",
+        "Qatar",
+        "Republic of North Macedonia",
+        "Romania",
+        "Russian Federation",
+        "Rwanda",
+        "Réunion",
+        "Saint Barthélemy",
+        "Saint Helena, Ascension and Tristan da Cunha",
+        "Saint Kitts and Nevis",
+        "Saint Lucia",
+        "Saint Martin (French part)",
+        "Saint Pierre and Miquelon",
+        "Saint Vincent and the Grenadines",
+        "Samoa",
+        "San Marino",
+        "Sao Tome and Principe",
+        "Saudi Arabia",
+        "Senegal",
+        "Serbia",
+        "Seychelles",
+        "Sierra Leone",
+        "Singapore",
+        "Sint Maarten (Dutch part)",
+        "Slovakia",
+        "Slovenia",
+        "Solomon Islands",
+        "Somalia",
+        "South Africa",
+        "South Georgia and the South Sandwich Islands",
+        "South Sudan",
+        "Spain",
+        "Sri Lanka",
+        "Sudan",
+        "Suriname",
+        "Svalbard and Jan Mayen",
+        "Sweden",
+        "Switzerland",
+        "Syrian Arab Republic",
+        "Taiwan",
+        "Tajikistan",
+        "Tanzania",
+        "Thailand",
+        "Timor-Leste",
+        "Togo",
+        "Tokelau",
+        "Tonga",
+        "Trinidad and Tobago",
+        "Tunisia",
+        "Turkey",
+        "Turkmenistan",
+        "Turks and Caicos Islands",
+        "Tuvalu",
+        "Uganda",
+        "Ukraine",
+        "United Arab Emirates",
+        "United Kingdom of Great Britain and Northern Ireland",
+        "United States Minor Outlying Islands",
+        "United States of America",
+        "Uruguay",
+        "Uzbekistan",
+        "Vanuatu",
+        "Venezuela",
+        "Viet Nam",
+        "Virgin Islands (British)",
+        "Virgin Islands (U.S.)",
+        "Wallis and Futuna",
+        "Western Sahara",
+        "Yemen",
+        "Zambia",
+        "Zimbabwe",
+        "Åland Islands"
+    ];
     const [viewPass,setViewPass] = useState(false);
     let dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const name= useRef();
     const lastName= useRef();
@@ -17,7 +263,8 @@ export default function SingUp() {
     const photo= useRef();
     const country= useRef();
 
-    function handleSingUp() {
+    function handleSingUp(e) {
+        e.preventDefault();
         let data = {
             name: name.current.value.trim(),
             lastName: lastName.current.value.trim(),
@@ -26,16 +273,39 @@ export default function SingUp() {
             password: password.current.value,
             country: country.current.value
         }
-        !data.photo&&delete data.photo;
-        dispatch(signup({data}));
-}
+        !data.photo && delete data.photo;
+        dispatch(signup(data))
+        .then(res=>{
+            if (res.payload.success){
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Registered, please loggin',
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
+                navigate('/signin')
+            } else if (res.payload.messages.length>0){
+                let html = res.payload.messages.map(each=>`<p>${each}</p>`).join('')
+                Swal.fire({
+                    title: 'Something went wrong',
+                    icon: 'error',
+                    html
+                  })
+            }
+            })
+        .catch(err=>console.log(err))
+    }
   return (
     <div className="flex flex-wrap w-full min-h-screen justify-center items-center bg-cover bg-center md:gap-12 xl:gap-48" style={{backgroundImage: `linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)),url('../img/backgroundLog.jpg')`}}>
-        <img className="hidden w-[512px] sm:inline" src="/img/whitelogo.png" alt="" />
-        <div className="flex flex-col p-12 rounded-md bg-[#FAF9F6]">
+        <div>
+            <img className="w-[512px] hidden md:inline" src="/img/whitelogo.png" alt="Logo" />
+            <p className="text-[#FAF9F6] text-2xl text-center w-[512px] md:mt-8">Find your perfect trip, designed by insiders who know and love their cities!</p>
+        </div>
+        <div className="flex flex-col p-12 rounded-md bg-[#FAF9F6] ">
             <h1 className="text-4xl font-semibold text-[#343231]">Create account</h1>
             <p className="my-6">Already have an account? <Anchor to={'/signin'} className="text-blue-600">Sign In</Anchor></p>
-            <form className="flex flex-col text-gray-600">
+            <form onSubmit={handleSingUp} className="flex flex-col text-gray-600">
                 <div className="flex  mb-3 flex-col sm:flex-row sm:gap-x-2">
                     <div className="flex flex-col mb-3 sm:mb-0">
                         <label>First Name:</label>
@@ -63,11 +333,11 @@ export default function SingUp() {
                 <label>Photo URL:</label>
                 <input className="mb-3 outline-none focus:border-blue-400 border-b border-gray-600 text-[#343231] bg-[#FAF9F6]" ref={photo} type="url" name="photo" id="photo"/>
                 <label >Country:</label>
-                <select className="mb-3 outline-none focus:border-blue-400 cursor-pointer border-b border-gray-600 text-[#343231] bg-[#FAF9F6]"  ref={country} defaultValue="none" name="country" id="country">
-                    <option value="none" disabled hidden></option>
+                <select className="mb-3 outline-none focus:border-blue-400 cursor-pointer border-b border-gray-600 text-[#343231] bg-[#FAF9F6]"  ref={country} defaultValue="" name="country" id="country">
+                    <option value="" disabled hidden></option>
                     {countries.map((country,index)=> <option value={country} key={index}>{country}</option>)}
                 </select>
-                <input className="self-end mt-7 w-fit bg-[#4F46E5] py-2 px-2 rounded-lg text-lg font-semibold text-white cursor-pointer sm:text-xl sm:px-10" type="button" value="Register" onClick={handleSingUp}/>
+                <input className="self-end mt-7 w-fit bg-teal-500 hover:bg-teal-600 py-2 px-2 rounded-lg text-lg font-semibold text-white cursor-pointer sm:text-xl sm:px-10" type="submit" value="Register"/>
             </form>
             <button className="flex justify-center items-center mt-8 hover:bg-slate-200 py-2 border border-gray-600 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" className="border-2 inline rounded-full" viewBox="0 0 48 48">

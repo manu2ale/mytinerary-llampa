@@ -3,21 +3,22 @@ import { useState,useEffect } from "react";
 import axios from "axios";
 import apiURL from "../apiURL";
 
-import { useSelector, useDispatch } from "react-redux"; 
+import { useDispatch } from "react-redux"; 
 import activities_actions from '../store/actions/activities'
 const {read_activities}= activities_actions
 
 
-export default function Activities({data}) {
-    // const dispatch=useDispatch();
+export default function Activities({id}) {
+    const dispatch=useDispatch();
     let [activities,setActivities]=useState([])
     useEffect(
         ()=> {
-            // dispatch(read_activities({itinerary_id: data}))
-            
-            axios(apiURL+'/activities?itinerary_id='+data)
-            .then(res=>setActivities(res.data.response))
-            .catch(err=>console.log(err))
+            dispatch(read_activities(id))
+            .then(response => setActivities(response.payload.activities))
+            .catch(err => console.log(err))
+            // axios(apiURL+'/activities?itinerary_id='+data)
+            // .then(res=>setActivities(res.data.response))
+            // .catch(err=>console.log(err))
         },[]
         )
         // console.log(activities);

@@ -4,9 +4,9 @@ import apiURL from "../../apiURL";
 
 const read_activities = createAsyncThunk(
     'read_activities',
-    async (obj)=>{
+    async (itinerary_id)=>{
         try {
-            let data = await axios(apiURL+'/activities?itinerary_id='+obj.itinerary_id)
+            let data = await axios(apiURL+'/activities?itinerary_id='+itinerary_id)
             // console.log(data.data.response)
             return {
                 activities: data.data.response

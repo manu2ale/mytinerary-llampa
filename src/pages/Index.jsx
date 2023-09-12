@@ -20,10 +20,10 @@ export default function Index() {
     const carousel = useSelector(store=>store.cities.carousel);
     
   return (
-    <>
+
         <main className="flex grow justify-center items-center bg-cover bg-center" style={{backgroundImage: `url(${'../img/index.jpg'})`}}>
           
-          <section className='flex flex-wrap bg-white/50 backdrop-blur rounded-xl px-2 py-8 font-bold text-lg justify-center items-center  
+          <section className='flex flex-wrap bg-teal-100/50 backdrop-blur-sm rounded-xl px-2 py-8 font-bold text-lg justify-center items-center  
             lg:py-2
             xl:w-[95%]
             2xl:w-[80%]
@@ -31,7 +31,7 @@ export default function Index() {
 
             <div className='my-5 text-center
             lg:w-3/4
-            xl:w-1/2 xl:text-left
+            xl:w-1/2 xl:text-center
             2xl:w-1/2'>
               <div className='flex flex-col gap-5 justify-center items-center'>
                 <img className='w-[240px]' src="/img/greenLogo.png" alt="" />
@@ -45,6 +45,5 @@ export default function Index() {
             <Carousel data={carousel} />
           </section>
         </main>
-    </>
   )
 }
