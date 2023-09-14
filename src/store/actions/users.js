@@ -82,5 +82,16 @@ const signout = createAsyncThunk(
         }
     }
 )
+
+const update_user = createAsyncThunk(
+    'update_user',
+    async(obj)=> {
+        let token = localStorage.getItem('token');
+        let authorization = { headers:{ 'Authorization':`Bearer ${token}` } }
+        let data = await axios.put(apiURL+'users',obj,authorization)
+
+    }
+)
+
 const user_actions = { signup,signin,signin_token,signout }
 export default user_actions;

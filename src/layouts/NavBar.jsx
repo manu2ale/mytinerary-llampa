@@ -13,7 +13,6 @@ export default function NavBar() {
   let { name,photo } = useSelector(store=>store.users?.user);
   let dispatch = useDispatch();
   const navigate = useNavigate();
-
   const handleCloseMenu = (event) => {
     if (userMenu) {
       const isClickInside = userMenu.current.contains(event.target)
@@ -102,7 +101,7 @@ return (
                   <img src={photo} alt="Profile photo" className='inline mr-1  ring-2 ring-purple-600 to ring-offset-1 rounded-full object-cover w-11 h-11 group-hover:drop-shadow-md' />
                 </button>
                 {dropMenu&&
-                <div  className='flex flex-col absolute right-0 mt-2 py-1 border-2 rounded-lg z-50 w-40 text-center divide-y bg-[#FAF9F6] shadow-lg text-base font-semibold'>
+                <div onClick={()=>setDropMenu(!dropMenu)}  className='flex flex-col absolute right-0 mt-2 py-1 border-2 rounded-lg z-50 w-40 text-center divide-y bg-[#FAF9F6] shadow-lg text-base font-semibold'>
                   <Anchor to={'/profile'} className='font-semibold hover:bg-slate-200'>Profile</Anchor>
                   <Anchor onClick={logout} className='hover:bg-slate-200 text-rose-600'>Sign Out</Anchor>
                 </div>}
@@ -110,8 +109,10 @@ return (
             </>
             :
             <>
-              <li><Anchor to='/signin' className='py-4 px-5 rounded-lg hover:shadow-md active:bg-slate-100'>Sign In</Anchor></li>
-              <li><Anchor to='/signup' className='py-4 px-5 rounded-lg hover:shadow-md active:bg-slate-100 '>Sign Up</Anchor></li>
+            <li className='divide-x'>
+              <Anchor to='/signin' className='py-4 px-5 rounded-lg hover:shadow-md active:bg-slate-100'>Sign In</Anchor>
+              <Anchor to='/signup' className='py-4 px-5 rounded-lg hover:shadow-md active:bg-slate-100 '>Sign Up</Anchor>
+            </li>
             </>
           }
         </ul>
