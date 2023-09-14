@@ -21,7 +21,7 @@ export default function NavBar() {
         setDropMenu(false)
       }
     }
-  };    
+  };
 
   useEffect(() => {
     document.addEventListener('click', handleCloseMenu)
@@ -53,7 +53,7 @@ export default function NavBar() {
   };
 
 return (
-  <header className="h-[50px] flex justify-center items-center
+  <header className="z-50 bg-[#FAF9F6] fixed w-full h-[50px] flex justify-center items-center
       sm:h-[60px]
       lg:h-[70px]"
   >
@@ -102,8 +102,9 @@ return (
                   <img src={photo} alt="Profile photo" className='inline mr-1  ring-2 ring-purple-600 to ring-offset-1 rounded-full object-cover w-11 h-11 group-hover:drop-shadow-md' />
                 </button>
                 {dropMenu&&
-                <div  className='absolute right-0 mt-2 border-2 rounded-lg z-50 w-40 text-center bg-[#FAF9F6] shadow-lg'>
-                  <Anchor onClick={logout} className='block hover:bg-slate-200 py-2 px-4'>Sign Out</Anchor>
+                <div  className='flex flex-col absolute right-0 mt-2 py-1 border-2 rounded-lg z-50 w-40 text-center divide-y bg-[#FAF9F6] shadow-lg text-base font-semibold'>
+                  <Anchor to={'/profile'} className='font-semibold hover:bg-slate-200'>Profile</Anchor>
+                  <Anchor onClick={logout} className='hover:bg-slate-200 text-rose-600'>Sign Out</Anchor>
                 </div>}
               </li>
             </>

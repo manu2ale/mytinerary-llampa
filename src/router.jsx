@@ -5,6 +5,7 @@ import Cities from "./pages/Cities";
 import CityDetail from "./pages/CityDetail";
 import SignUp from "./pages/SingUp"
 import SingIn from "./pages/SingIn";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
                     { path: "/home", element: <Index /> },
                     { path: "/cities", element: <Cities /> },
                     { path: "/city/:id", element: <CityDetail />},
+                    { path:'/profile', element: <Profile />},
                     { path: "/*", element: <NotFound />}
     ]
     },
