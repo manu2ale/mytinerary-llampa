@@ -1,8 +1,4 @@
 import { useState,useEffect } from "react";
-
-import axios from "axios";
-import apiURL from "../apiURL";
-
 import { useDispatch } from "react-redux"; 
 import activities_actions from '../store/actions/activities'
 const {read_activities}= activities_actions

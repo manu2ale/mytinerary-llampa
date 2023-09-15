@@ -15,7 +15,7 @@ export default function NavBar() {
   const navigate = useNavigate();
   const handleCloseMenu = (event) => {
     if (userMenu) {
-      const isClickInside = userMenu.current.contains(event.target)
+      const isClickInside = userMenu.current?.contains(event.target)
       if(userMenu.current !== event.target && !isClickInside) {
         setDropMenu(false)
       }

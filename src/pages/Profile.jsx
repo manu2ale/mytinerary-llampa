@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react"
 import Swal from "sweetalert2";
 import { useSelector,useDispatch } from "react-redux";
+import user_actions from '../store/actions/users'
+const { update_user } = user_actions
 
 export default function Profile() {
+	const dispatch = useDispatch();
 	const user = useSelector(store=>store.users?.user);
     let name = useRef();
     let lastName = useRef();
@@ -15,7 +18,7 @@ export default function Profile() {
 
     function cancel () {
       setEdit(!edit)
-      // window. location. reload()
+      window. location. reload()
     }
 
     function updateUser(e) {
@@ -31,19 +34,25 @@ export default function Profile() {
           if (photo.current.value) {
             data.photo=photo.current.value
           }
+          if (password.current.value) {
+            data.password=password.current.value
+          }
           if (country.current.value) {
             data.country=country.current.value
           }
-          // Swal.fire({
-          //     position: 'center',
-          //     icon: 'success',
-          //     title: `Updated ${user.name}`,
-          //     showConfirmButton: false,
-          //     timer: 2000
-          //   })
+
+          dispatch(update_user(data))
+          setEdit(!edit)
+          Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Profile Updated',
+          showConfirmButton: false,
+          timer: 2000
+          })
         } catch (error) {
-          console.log(error)
-      }
+              console.log(error)
+        }
     } 
 
   return (
@@ -53,9 +62,9 @@ export default function Profile() {
 			<form onSubmit={updateUser} className="flex flex-col text-xl gap-y-3">
 				<label >Name: <input className="border-2" disabled={!edit} ref={name} type="text" defaultValue={user.name}/></label>
 				<label >Last Name: <input className="border-2" disabled={!edit} ref={lastName} type="text" defaultValue={user.lastName}/></label>
-				<label >Email: <input className="border-2" disabled={!edit} ref={mail} type="text" defaultValue={user.mail}/></label>
+				<label >Email: <input className="border-2" disabled ref={mail} type="text" defaultValue={user.mail}/></label>
 				<label >Photo URL: <input className="border-2" disabled={!edit} ref={photo} type="text" defaultValue={user.photo}/></label>
-				<label >Password: </label>
+				<label >Password: <input className="border-2" disabled={!edit} ref={password} type="text"/></label>
 				<label >Country: <input className="border-2" disabled={!edit} ref={country} type="text" defaultValue={user.country}/></label>
 
 				{!edit?
