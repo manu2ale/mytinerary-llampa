@@ -18,7 +18,7 @@ export default function Profile() {
 
     function cancel () {
       setEdit(!edit)
-      window. location. reload()
+      window.location.reload()
     }
 
     function updateUser(e) {
