@@ -5,39 +5,35 @@ import like_actions from "../store/actions/likes";
 const { already_liked,read_likes,like_dislike } = like_actions
 
 export default function CardItinerary({data, index}) {
-    let user = useSelector(store=>store.users?.user);
+    const user = useSelector(store=>store.users?.user);
     const [isLiked,setIsLiked] = useState();
     const [totalLikes,setTotalLikes] = useState();
     const [show,setShow] = useState(false);
     const [viewMore,setViewMore] = useState(false);
-    const [clickLike,setClickLike] = useState(false);
+    const dispatch = useDispatch();
     let priceArray = [];
     const repeatMoney = ()=>{for (let i=1;i<=data.price;i++) {  priceArray.push(
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-green-700 inline w-6 h-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>) }}
-    const dispatch = useDispatch();
-    
-    const likeDislike = ()=>{
+      </svg>) }}
+
+    function likeDislike(){
       dispatch(like_dislike({itinerary_id: data._id}));
       setIsLiked(!isLiked)
-      setClickLike(!clickLike);
     }
     
     useEffect(
       ()=>{
         dispatch(already_liked( {itinerary_id: data._id} ))
         .then(response => setIsLiked(response.payload.isLiked))
-        .catch(err => console.log(err))
-        
+        .catch(err => console.log(err));
         dispatch(read_likes( data._id ))
         .then(response => setTotalLikes(response.payload.countLikes))
-        .catch(err => console.log(err))
-      },[clickLike]
+        .catch(err => console.log(err));
+      },[isLiked]
       );
       
-      // likesCount.current.outterText = countLikes.toString()
-return (
+  return (
     <div key={index} className="flex flex-col items-center my-6 max-w-2xl max-h-fit hover:drop-shadow-lg bg-white border-2 rounded-xl">
       <h1 className="py-5 text-center text-3xl font-semibold">{data.name}</h1>
       <img className="w-11/12 border border-black/30 rounded aspect-video object-cover" src={data.photo} alt="itinerary photo" />
@@ -123,5 +119,6 @@ return (
         }
       </div>
       }
-    </div>  )
+    </div>  
+  )
 }

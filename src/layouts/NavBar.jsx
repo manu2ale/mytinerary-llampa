@@ -1,10 +1,9 @@
-import React from 'react'
 import { Link as Anchor,useNavigate } from 'react-router-dom'
 import { useState,useRef,useEffect } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import Swal from 'sweetalert2'
 import user_actions from '../store/actions/users.js'
 const { signout } = user_actions
+import Swal from 'sweetalert2'
 
 export default function NavBar() {
   let userMenu = useRef();
@@ -38,6 +37,7 @@ export default function NavBar() {
               showConfirmButton: false,
               timer: 2000
             })
+          window.location.reload()
           navigate('/')
       } else if (res.payload.messages.length>0){
           let html = res.payload.messages.map(each=>`<p>${each}</p>`).join('')

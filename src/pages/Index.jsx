@@ -34,7 +34,7 @@ export default function Index() {
             2xl:w-1/2'>
               <div className='flex flex-col gap-5 justify-center items-center'>
                 <img className='w-[240px]' src="/img/greenLogo.png" alt="" />
-                <h1 className='shadow-md italic'>Find your perfect trip, designed by insiders who know and love their cities!</h1>
+                <h1 className='italic'>Find your perfect trip, designed by insiders who know and love their cities!</h1>
               </div>
               <h1 className='my-8 text-4xl font-bold'>Find the perfect destination</h1>
               <p className='my-8 text-2xl text-gray-700 font-semibold'>Our app will help you find the perfect path for your next trip. With an easy-to-use interface and a host of itinerary options, planning your next trip has never been easier.</p>
