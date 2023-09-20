@@ -12,15 +12,9 @@ export default function Activities({id}) {
             dispatch(read_activities(id))
             .then(response => setActivities(response.payload.activities))
             .catch(err => console.log(err))
-            // axios(apiURL+'/activities?itinerary_id='+data)
-            // .then(res=>setActivities(res.data.response))
-            // .catch(err=>console.log(err))
         },[]
         )
-        // console.log(activities);
-        // const activities = useSelector(store=>store.activities.activities)
-        // let activities = [];
-        // setActivities(useSelector(store=>store.activities.activities))
+        // console.log(activities)
   return (
     <div className="flex flex-wrap gap-1 justify-center pb-6">
         {activities.length > 0 ? 
