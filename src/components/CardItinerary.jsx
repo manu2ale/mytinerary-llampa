@@ -22,10 +22,9 @@ export default function CardItinerary({data, index}) {
       dispatch(like_dislike({itinerary_id: data._id}));
       setIsLiked(!isLiked)
     }
-    
     useEffect(
       ()=>{
-        dispatch(already_liked( {itinerary_id: data._id} ))
+        user.name&&dispatch(already_liked( {itinerary_id: data._id} ))
         .then(response => setIsLiked(response.payload.isLiked))
         .catch(err => console.log(err));
         dispatch(read_likes( data._id ))
@@ -35,8 +34,8 @@ export default function CardItinerary({data, index}) {
       );
       
   return (
-    <div key={index} className="flex flex-col items-center my-6 max-w-2xl max-h-fit hover:drop-shadow-lg bg-white border-2 rounded-xl">
-      <h1 className="py-5 text-center text-3xl font-semibold">{data.name}</h1>
+    <div key={index} className="flex flex-col items-center my-2 max-w-2xl max-h-fit hover:drop-shadow-lg bg-white border-2 rounded-xl">
+      <h1 className="py-5 text-center text-2xl font-semibold">{data.name}</h1>
       <img className="w-11/12 border border-black/30 rounded aspect-video object-cover" src={data.photo} alt="itinerary photo" />
       <div className="flex justify-between items-center w-11/12 px-1 py-6">
         <div>

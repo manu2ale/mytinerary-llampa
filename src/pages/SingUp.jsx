@@ -284,7 +284,7 @@ export default function SingUp() {
                     showConfirmButton: false,
                     timer: 2000
                   })
-                navigate('/signin')
+                navigate('/signin', {replace:true})
             } else if (res.payload.messages.length>0){
                 let html = res.payload.messages.map(each=>`<p>${each}</p>`).join('')
                 Swal.fire({
