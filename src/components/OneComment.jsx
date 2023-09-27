@@ -9,7 +9,7 @@ import { ReloadContext } from "./Comments";
 export const Context = createContext();
 
 export default function OneComment({ comment, user_id }) {
-    console.log(ReloadContext)
+    // console.log(ReloadContext)
     const [reloadComment, setReloadComment] = useContext(ReloadContext)
     const commentMenu = useRef();
     const commentText = useRef();
