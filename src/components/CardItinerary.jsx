@@ -1,9 +1,10 @@
 import { useEffect,useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
+import Activities from "./Activities";
+import Swal from "sweetalert2";
+import Comments from "./Comments";
 import like_actions from "../store/actions/likes";
 const { already_liked,read_likes,like_dislike } = like_actions
-import Activities from "./Activities";
-import Comments from "./Comments";
 
 export default function CardItinerary({data, index}) {
     const user = useSelector(store=>store.users?.user);
@@ -19,8 +20,23 @@ export default function CardItinerary({data, index}) {
       </svg>) }}
 
     function likeDislike(){
-      dispatch(like_dislike({itinerary_id: data._id}));
-      setIsLiked(!isLiked)
+      if (user.name) {
+        dispatch(like_dislike({itinerary_id: data._id}));
+        setIsLiked(!isLiked)
+      } else {
+        Swal.fire({
+          title: 'Please sign in to like',
+          icon: 'info',
+          confirmButtonColor: '#14b8a6',
+          confirmButtonText: 'Sign In',
+          showCancelButton: true,
+          footer: "Need an account?<a href='/signup' style='color:#5e8bee'> Sign Up!</a>"
+      }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.href = "/signin";
+          }
+      })
+      }
     }
     useEffect(
       ()=>{

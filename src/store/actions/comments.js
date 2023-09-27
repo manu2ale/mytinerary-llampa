@@ -40,13 +40,14 @@ const create_comment = createAsyncThunk(
 
 const update_comment = createAsyncThunk(
     'update_comment',
-    async (obj,comment_id)=> {
+    async (obj)=> {
         try {
             let token = localStorage.getItem('token');
             let authorization = { headers:{ 'Authorization':`Bearer ${token}` }};
-            let data = await axios.put(apiURL+'comments/'+comment_id,obj,authorization);
+            let data = await axios.put(apiURL+'comments/'+obj.comment_id,obj.data,authorization);
             return {
-                commentUpdated: data.data.response
+                commentUpdated: data.data.response,
+                success: data.data.success
             }
         } catch (error) {
             console.log(error)
@@ -64,7 +65,7 @@ const delete_comment = createAsyncThunk(
             let token = localStorage.getItem('token');
             let authorization = { headers:{ 'Authorization':`Bearer ${token}` }};
             let data = await axios.delete(apiURL+'comments/'+comment_id,authorization);
-            console.log(data.data.success)
+            // console.log(data.data.success)
             return {
                 commentDeleted: data.data.success
             }

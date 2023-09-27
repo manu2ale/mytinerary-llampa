@@ -6,7 +6,8 @@ const initial_state = {
     comments: [],
     comment_created: {},
     comment_updated:{},
-    comment_deleted: false
+    comment_deleted: false,
+    success: false
 }
 
 const comments_readucer = createReducer(
@@ -34,7 +35,8 @@ const comments_readucer = createReducer(
         (state,action)=> {
             let new_state = {
                 ...state,
-                comment_updated: action.payload.commentUpdated
+                comment_updated: action.payload.commentUpdated,
+                success: action.payload.success
             }
             return new_state
         }

@@ -1,12 +1,13 @@
-import { useRef, useState, useEffect } from "react";
+import { createContext,useRef, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import OneComment from "./OneComment";
 import comments_actions from "../store/actions/comments";
 const { read_comments, create_comment } = comments_actions;
 
+export const ReloadContext = createContext(); 
+
 export default function Comments({ itinerary_id, user }) {
-    // const [menuToogle,setMenuToogler]=useState(false);
     const [allComments, setAllComments] = useState([]);
     const [reloadComment, setReloadComment] = useState(true);
     let inputComment = useRef();
@@ -34,6 +35,18 @@ export default function Comments({ itinerary_id, user }) {
                         if (res.payload.commentCreated) {
                             setReloadComment(!reloadComment);
                             inputComment.current.value = ''
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'bottom-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true
+                              })
+                              
+                              Toast.fire({
+                                icon: 'success',
+                                title: 'Comment created'
+                              })
                         }
                     })
                     .catch(err => console.log(err))
@@ -63,32 +76,13 @@ export default function Comments({ itinerary_id, user }) {
             <h1 className="font-bold text-xl text-center">Comments <span className="text-sm bg-teal-500 text-white px-3 py-1 rounded-full">{allComments.length}</span></h1>
             <div className="flex flex-col h-52 gap-3 border-2 rounded-lg p-2 my-2 overflow-y-auto overscroll-contain" style={{ scrollbarWidth: "thin" }}>
                 {allComments.length > 0 ?
-                    allComments.map((comment, index) => <OneComment comment={comment} user_id={user._id} key={index} />
-                        // <div className="flex my-2" key={index}>
-                        //     <img className="inline-block select-none mr-3 ring-1 ring-purple-600 to ring-offset-1 rounded-full object-cover w-8 h-8 group-hover:drop-shadow-md" src={comment.user_id.photo} alt="profile photo" />
-                        //     <div className="p-2 rounded-lg w-full bg-slate-100">
-                        //         <div className="flex justify-between relative">
-                        //             <span className="font-bold select-none">{comment.user_id.name + ' ' + (comment.user_id.lastName || '')}</span>
-                        //             {user._id == comment.user_id._id&&
-                        //             <>
-                        //                 <svg onClick={()=>setMenuToogler(!menuToogle)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"w-6 h-6 border-black/50 rounded-full hover:border-2 hover:cursor-pointer "+(menuToogle&&"border-2")}>
-                        //                     <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                        //                 </svg>
-                        //                 {menuToogle&&
-                        //                     <ul className="absolute flex flex-col right-0 top-6 rounded-lg border-2 divide-y-1 text-right bg-white hover:cursor-pointer">
-                        //                         <li onClick={''} className="px-3 py-1 hover:bg-slate-200">Edit</li>
-                        //                         <li onClick={''} className="px-3 py-1 text-rose-600 hover:bg-slate-200">Delete</li>
-                        //                     </ul>
-                        //                 }
-                        //             </>
-                        //             }
-                        //         </div>
-                        //         <p className="break-words">{comment.text}</p>
-                        //     </div>
-                        // </div>
+                    allComments.map((comment, index) => 
+                    <ReloadContext.Provider value={[reloadComment, setReloadComment]}>
+                        <OneComment comment={comment} user_id={user._id} key={index} />
+                    </ReloadContext.Provider>
                     )
                     :
-                    <p>No comments yet</p>
+                    <p className="italic opacity-50">No comments</p>
                 }
             </div>
             <div className="flex items-center">
