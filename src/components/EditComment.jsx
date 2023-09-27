@@ -46,10 +46,10 @@ export function EditComment({ comment_id }, ref) {
     };
 
     return (
-        <form className="flex flex-col" onSubmit={updateComment}>
-            <input type="text" ref={editedText} className="outline-none border-full focus:border-teal-500 border-2 border-teal-300 text-[#343231] bg-[#FAF9F6]" />
-            <button className="self-end" type="submit">Save</button>
-            <button className="inline self-end" onClick={() => setEditableComment(!editableComment)}>Cancel</button>
+        <form className="flex gap-1" onSubmit={updateComment}>
+            <input type="text" ref={editedText} maxLength={200} className="w-full break-words rounded-full px-2 outline-none border-full border-2 border-teal-300 text-[#343231] bg-[#FAF9F6] focus:border-teal-500"/>
+            <button title="Save" className=" px-2.5 bg-teal-500 rounded-full text-white text-lg font-bold hover:bg-teal-400" type="submit">✓</button>
+            <button title="Cancel" className="py-1 px-2 border-2 border-[#343231] rounded-full font-bold bg-white hover:border-dashed" onClick={() => setEditableComment(!editableComment)}>✕</button>
         </form>
     )
 };

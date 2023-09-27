@@ -10,7 +10,7 @@ export const Context = createContext();
 
 export default function OneComment({ comment, user_id }) {
     // console.log(ReloadContext)
-    const [reloadComment, setReloadComment] = useContext(ReloadContext)
+    const [reloadComment, setReloadComment] = useContext(ReloadContext,null)
     const commentMenu = useRef();
     const commentText = useRef();
     const [menuToogle, setMenuToogle] = useState(false);
@@ -67,11 +67,11 @@ export default function OneComment({ comment, user_id }) {
                     <span className="font-bold select-none">{comment.user_id.name + ' ' + (comment.user_id.lastName || '')}</span>
                     {user_id == comment.user_id._id &&
                         <div ref={commentMenu}>
-                            <svg onClick={() => setMenuToogle(!menuToogle)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"w-6 h-6 border-black/50 rounded-full hover:border-2 hover:cursor-pointer " + (menuToogle && "border-2")}>
+                            <svg onClick={() => setMenuToogle(!menuToogle)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"w-6 h-6 border-black/50  rounded-full hover:border-2 hover:cursor-pointer " + (menuToogle && "border-2")}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
                             </svg>
                             {menuToogle &&
-                                <ul className="absolute flex flex-col right-0 top-6 rounded-lg border-2 divide-y-1 text-right bg-white hover:cursor-pointer">
+                                <ul className="absolute flex flex-col right-0 top-6 rounded-lg border-2 divide-y-2 font-semibold text-center bg-white hover:cursor-pointer">
                                     <li onClick={showEdit} className="px-3 py-1 hover:bg-slate-200">Edit</li>
                                     <li onClick={deleteComment} className="px-3 py-1 text-rose-600 hover:bg-slate-200">Delete</li>
                                 </ul>
@@ -79,7 +79,7 @@ export default function OneComment({ comment, user_id }) {
                         </div>
                     }
                 </div>
-                <p ref={commentText} className="break-words">{comment.text}</p>
+                <p ref={commentText} className="break-words max-w-md">{comment.text}</p>
 
                 {editableComment &&
                     <div className="flex flex-col">
