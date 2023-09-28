@@ -42,20 +42,20 @@ export default function SingIn() {
     }
     
     return (
-        <div className="flex w-full min-h-screen flex-wrap  justify-center items-center bg-cover bg-center md:gap-12 xl:gap-48" style={{backgroundImage: `linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)),url('../img/background.jpg')`}}>
+        <div className="flex w-full content-center min-h-screen flex-wrap  justify-center items-center bg-cover bg-center md:gap-12 xl:gap-48" style={{backgroundImage: `linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)),url('../img/background.jpg')`}}>
             <div>
                 <img className="w-[512px] hidden md:inline" src="/img/whitelogo.png" alt="Logo" />
-                <p className="text-[#FAF9F6] text-2xl text-center w-[512px] md:mt-8">Find your perfect trip, designed by insiders who know and love their cities!</p>
+                <p className="text-[#FAF9F6] text-2xl text-center max-w-[512px] md:mt-8">Find your perfect trip, designed by insiders who know and love their cities!</p>
             </div>
             <div className="flex flex-col w-[476px] m-3 p-12 rounded-md bg-[#FAF9F6] lg:mr-16">
                 <h1 className="text-4xl font-semibold text-[#343231]">Sign In</h1>
-                <p className="my-6">Need an account? <Anchor to={'/signup'} className="text-blue-600">Sign Up</Anchor></p>
-                <form onSubmit={handleSingIn} className="flex flex-col text-gray-600">
+                <p className="my-6">Need an account? <Anchor to='/signup' replace className="text-blue-600">Sign Up</Anchor></p>
+                <form onSubmit={handleSingIn} className="flex flex-col text-[#343231]">
                     <label>Email:</label>
                     <input className="mb-3 outline-none focus:border-blue-400 border-b border-gray-600 text-[#343231] bg-[#FAF9F6]" ref={mail} type="email" name="mail" id="mail"/>
                     <label>Password:</label>
                     <input className="mb-3 outline-none focus:border-blue-400 border-b border-gray-600 text-[#343231] bg-[#FAF9F6]" ref={password} type="password" name="password" id="password"/>
-                    <input className="self-end mt-7 w-fit bg-teal-500 hover:bg-teal-600 py-2 px-2 rounded-lg text-lg font-semibold text-white cursor-pointer sm:text-xl sm:px-10" type="submit" value="Sign In"/>
+                    <input className="self-end mt-7 w-fit bg-teal-500 hover:bg-teal-600 py-2 px-10 rounded-lg text-lg font-semibold text-white cursor-pointer sm:text-xl" type="submit" value="Sign In"/>
                 </form>
                 <button className="flex w-full justify-center items-center mt-8 hover:bg-slate-200 py-2 border border-gray-600 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" className="border-2 rounded-full" viewBox="0 0 48 48">

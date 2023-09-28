@@ -13,7 +13,7 @@ export default function Comments({ itinerary_id, user }) {
     const [reloadComment, setReloadComment] = useState(true);
     let inputComment = useRef();
     const dispatch = useDispatch();
-    const defaultPhoto = 'https://cdn-icons-png.flaticon.com/512/1053/1053244.png'
+    const defaultPhoto = 'https://i.im.ge/2023/09/28/N6umIh.guest.png'
 
     useEffect(
         () => {
