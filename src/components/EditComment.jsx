@@ -1,12 +1,14 @@
-import { useContext, useEffect, useRef, forwardRef } from "react"
+import React, { useContext, useEffect, useRef, forwardRef } from "react"
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 import comments_actions from "../store/actions/comments"
 const { update_comment } = comments_actions;
-import { Context } from "./OneComment";
-import Swal from "sweetalert2";
+// import { Context } from "./OneComment";
+import { commentContext } from "../context/CommentContext";
 // console.log(Context)
 export function EditComment({ comment_id }, ref) {
-    const [editableComment, setEditableComment] = useContext(Context);
+    // const [editableComment, setEditableComment] = useContext(Context);
+    const { setEditable } = useContext(commentContext)
     const editedText = useRef();
     const dispatch = useDispatch();
 
@@ -25,7 +27,8 @@ export function EditComment({ comment_id }, ref) {
                 .then(res => {
                     if (res.payload.success) {
                         ref.current.textContent = editedText.current.value.trim();
-                        setEditableComment(!editableComment);
+                        // setEditableComment(!editableComment);
+                        setEditable();
                         const Toast = Swal.mixin({
                             toast: true,
                             position: 'bottom-end',
@@ -35,7 +38,7 @@ export function EditComment({ comment_id }, ref) {
                         })
                         Toast.fire({
                             icon: 'success',
-                            title: 'Comment edited'
+                            title: 'Comment Edited'
                         })
                     };
                 })
@@ -47,9 +50,9 @@ export function EditComment({ comment_id }, ref) {
 
     return (
         <form className="flex gap-1" onSubmit={updateComment}>
-            <input type="text" ref={editedText} maxLength={200} className="w-full break-words rounded-full px-2 outline-none border-full border-2 border-teal-300 text-[#343231] bg-[#FAF9F6] focus:border-teal-500"/>
+            <input type="text" ref={editedText} maxLength={200} className="w-full break-words rounded-full px-2 outline-none border-full border-2 border-teal-300 text-[#343231] bg-[#FAF9F6] focus:border-teal-500" />
             <button title="Save" className=" px-2.5 bg-teal-500 rounded-full text-white text-lg font-bold hover:bg-teal-400" type="submit">✓</button>
-            <button title="Cancel" className="py-1 px-2 border-2 border-[#343231] rounded-full font-bold bg-white hover:border-dashed" onClick={() => setEditableComment(!editableComment)}>✕</button>
+            <button title="Cancel" className="py-1 px-2 border-2 border-[#343231] rounded-full font-bold bg-white hover:border-dashed" onClick={() => setEditable()}>✕</button>
         </form>
     )
 };

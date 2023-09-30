@@ -1,21 +1,21 @@
-import { useContext, createContext, useState, useRef, useEffect } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import EditComment from "./EditComment";
 import comments_actions from "../store/actions/comments";
 const { delete_comment } = comments_actions;
-
-import { ReloadContext } from "./Comments";
-export const Context = createContext();
+// import { ReloadContext } from "./Comments";
+// export const Context = React.createContext();
+import { commentContext } from "../context/CommentContext";
 
 export default function OneComment({ comment, user_id }) {
-    // console.log(ReloadContext)
-    const [reloadComment, setReloadComment] = useContext(ReloadContext,null)
+    const { setEditable,editableComment } = useContext(commentContext)
+    // const [reloadComment, setReloadComment] = useContext(ReloadContext)
     const commentMenu = useRef();
     const commentText = useRef();
     const [menuToogle, setMenuToogle] = useState(false);
     const [hideComment, setHideComment] = useState(false);
-    const [editableComment, setEditableComment] = useState(false);
+    // const [editableComment, setEditableComment] = useState(false);
     const dispatch = useDispatch();
 
     function handleCloseCommentMenu(event) {
@@ -36,7 +36,8 @@ export default function OneComment({ comment, user_id }) {
         dispatch(delete_comment(comment._id))
             .then(res => {
                 if (res.payload.commentDeleted) {
-                    setReloadComment(!reloadComment)
+                    // setReloadComment(!reloadComment)
+                    // setReload();
                     setHideComment(true)
                     const Toast = Swal.mixin({
                         toast: true,
@@ -48,7 +49,7 @@ export default function OneComment({ comment, user_id }) {
                       
                       Toast.fire({
                         icon: 'success',
-                        title: 'Comment deleted'
+                        title: 'Comment Deleted'
                       })                }
             })
             .catch(err => console.log(err))
@@ -56,7 +57,8 @@ export default function OneComment({ comment, user_id }) {
 
     function showEdit() {
         setMenuToogle(!menuToogle);
-        setEditableComment(true);
+        // setEditableComment(true);
+        setEditable();
     }
 
     return (
@@ -72,8 +74,8 @@ export default function OneComment({ comment, user_id }) {
                             </svg>
                             {menuToogle &&
                                 <ul className="absolute flex flex-col right-0 top-6 rounded-lg border-2 divide-y-2 font-semibold text-center bg-white hover:cursor-pointer">
-                                    <li onClick={showEdit} className="px-3 py-1 hover:bg-slate-200">Edit</li>
-                                    <li onClick={deleteComment} className="px-3 py-1 text-rose-600 hover:bg-slate-200">Delete</li>
+                                    <li onClick={showEdit} className="px-3 py-2 hover:bg-slate-200">Edit</li>
+                                    <li onClick={deleteComment} className="px-3 py-2 text-rose-500 hover:bg-slate-200">Delete</li>
                                 </ul>
                             }
                         </div>
@@ -83,10 +85,11 @@ export default function OneComment({ comment, user_id }) {
 
                 {editableComment &&
                     <div className="flex flex-col">
-                        <Context.Provider value={[editableComment, setEditableComment]}>
+                        {/* <Context.Provider value={[editableComment, setEditableComment]}> */}
                             <EditComment comment_id={comment._id} ref={commentText}/>
-                        </Context.Provider>
-                    </div>}
+                        {/* </Context.Provider> */}
+                    </div>
+                }
 
             </div>
         </div>

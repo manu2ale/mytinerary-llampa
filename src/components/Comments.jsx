@@ -1,14 +1,14 @@
-import { createContext,useRef, useState, useEffect } from "react";
+import React, { useContext ,useRef, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import OneComment from "./OneComment";
 import comments_actions from "../store/actions/comments";
 const { read_comments, create_comment } = comments_actions;
-
-export const ReloadContext = createContext([]);
-
+// export const ReloadContext = React.createContext();
+import CommentProvider from "../context/CommentProvider";
 
 export default function Comments({ itinerary_id, user }) {
+    // const {setReload,reloadComment} = useContext(commentContext);
     const [allComments, setAllComments] = useState([]);
     const [reloadComment, setReloadComment] = useState(true);
     let inputComment = useRef();
@@ -34,7 +34,7 @@ export default function Comments({ itinerary_id, user }) {
                 dispatch(create_comment(data))
                     .then(res => {
                         if (res.payload.commentCreated) {
-                            setReloadComment(!reloadComment);
+                            setReloadComment();
                             inputComment.current.value = ''
                             const Toast = Swal.mixin({
                                 toast: true,
@@ -42,12 +42,12 @@ export default function Comments({ itinerary_id, user }) {
                                 showConfirmButton: false,
                                 timer: 3000,
                                 timerProgressBar: true
-                              })
-                              
-                              Toast.fire({
+                            })
+
+                            Toast.fire({
                                 icon: 'success',
                                 title: 'Comment created'
-                              })
+                            })
                         }
                     })
                     .catch(err => console.log(err))
@@ -75,12 +75,14 @@ export default function Comments({ itinerary_id, user }) {
     return (
         <div className="flex flex-col w-full mb-6 p-1 text-sm border border-gray-400 rounded-xl shadow-lg">
             <h1 className="font-bold text-xl text-center">Comments <span className="text-sm bg-teal-500 text-white px-2.5 py-1 rounded-full">{allComments.length}</span></h1>
-            <div className="flex flex-col h-52 gap-3 border-2 rounded-lg p-2 my-2 overflow-y-auto overscroll-contain" style={{ scrollbarWidth: "thin"}}>
+            <div className="flex flex-col h-52 gap-3 border-2 rounded-lg p-2 my-2 overflow-y-auto overscroll-contain" style={{ scrollbarWidth: "thin" }}>
                 {allComments.length > 0 ?
-                    allComments.map((comment, index) => 
-                    <ReloadContext.Provider value={[reloadComment, setReloadComment]} key={index}>
-                        <OneComment key={index} comment={comment} user_id={user._id} />
-                    </ReloadContext.Provider>
+                    allComments.map((comment, index) =>
+                        // <ReloadContext.Provider value={[reloadComment, setReloadComment]} key={index}>
+                        <CommentProvider key={index}>
+                            <OneComment key={index} comment={comment} user_id={user._id} />
+                        </CommentProvider>
+                        // </ReloadContext.Provider>
                     )
                     :
                     <p className="italic opacity-50">No comments</p>

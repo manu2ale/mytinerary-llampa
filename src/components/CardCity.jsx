@@ -3,7 +3,7 @@ import { Link as Anchor } from 'react-router-dom';
 export default function CardCity({ imgUrl, city, country, id }) {
 
   return (
-    <Anchor to={'/city/'+id} className='flex w-[174px] h-[120px] relative hover:cursor-pointer hover:border-teal-500 hover:border-2 rounded-xl text-white font-semibold
+    <Anchor to={'/city/'+id} className='flex w-[174px] h-[120px] relative hover:cursor-pointer hover:border-teal-500 hover:border-4 rounded-2xl text-white font-semibold
                                         sm:w-[374px] sm:h-[250px]
     '>
       <img className='object-cover rounded-xl brightness-50 hover:brightness-75' src={imgUrl}/>
