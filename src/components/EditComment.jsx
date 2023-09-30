@@ -3,11 +3,9 @@ import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import comments_actions from "../store/actions/comments"
 const { update_comment } = comments_actions;
-// import { Context } from "./OneComment";
-import { commentContext } from "../context/CommentContext";
-// console.log(Context)
+import { commentContext } from "../context/commentContext";
+
 export function EditComment({ comment_id }, ref) {
-    // const [editableComment, setEditableComment] = useContext(Context);
     const { setEditable } = useContext(commentContext)
     const editedText = useRef();
     const dispatch = useDispatch();
@@ -27,7 +25,6 @@ export function EditComment({ comment_id }, ref) {
                 .then(res => {
                     if (res.payload.success) {
                         ref.current.textContent = editedText.current.value.trim();
-                        // setEditableComment(!editableComment);
                         setEditable();
                         const Toast = Swal.mixin({
                             toast: true,

@@ -1,18 +1,14 @@
 import React, { useState } from "react";
-import { commentContext } from "./CommentContext";
+import { commentContext } from "./commentContext";
 
 export default function CommentProvider({ children }) {
-    // const [reloadComment, setReloadComment] = useState(true);
     const [editableComment, setEditableComment] = useState(false);
-    // const setReload = () => {
-    //     setReloadComment(!reloadComment)
-    // };
     const setEditable = () => {
         setEditableComment(!editableComment)
     };
 
     return (
-        <commentContext.Provider value={{setEditable,editableComment}}>
+        <commentContext.Provider value={{setEditable, editableComment}}>
             {children}
         </commentContext.Provider>
     )

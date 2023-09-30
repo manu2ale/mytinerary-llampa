@@ -4,7 +4,8 @@ import Activities from "./Activities";
 import Swal from "sweetalert2";
 import Comments from "./Comments";
 import like_actions from "../store/actions/likes";
-const { already_liked, read_likes, like_dislike } = like_actions
+const { already_liked, read_likes, like_dislike } = like_actions;
+import ReloadCommentsProvider from "../context/ReloadCommentsProvider";
 
 export default function CardItinerary({ data, index }) {
   const user = useSelector(store => store.users?.user);
@@ -94,7 +95,9 @@ export default function CardItinerary({ data, index }) {
           {viewMore &&
             <>
               <Activities id={data._id} />
-              <Comments itinerary_id={data._id} user={user} />
+              <ReloadCommentsProvider>
+                <Comments itinerary_id={data._id} user={user} />
+              </ReloadCommentsProvider>
             </>
           }
         </div>
