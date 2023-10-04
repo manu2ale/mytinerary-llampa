@@ -101,5 +101,26 @@ const update_user = createAsyncThunk(
     }
 )
 
-const user_actions = { signup,signin,signin_token,signout,update_user }
+const google = createAsyncThunk(
+    'google',
+    async(obj)=> {
+        try {
+            let data = await axios.post(apiURL+'auth/google',obj)
+            localStorage.setItem('token',data.data.response.token)
+            return {
+                user: data.data.response.user,
+                token: data.data.response.token,
+                messages: []
+            }
+        } catch (error) {
+            console.log(error)
+            return {
+                user: {},
+                token: '',
+            }
+        }
+    }
+)
+
+const user_actions = { signup,signin,signin_token,signout,update_user, google }
 export default user_actions;

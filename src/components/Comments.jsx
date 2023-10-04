@@ -75,7 +75,7 @@ export default function Comments({ itinerary_id, user }) {
     }
 
     return (
-        <div className="flex flex-col w-full mb-6 p-1 text-sm border border-gray-400 rounded-xl shadow-lg">
+        <div className="flex flex-col w-full mb-6 p-2 text-sm border border-gray-400 rounded-xl shadow-lg">
             <h1 className="font-bold text-xl text-center">Comments <span className="text-sm bg-teal-500 text-white px-2.5 py-1 rounded-full">{allComments.length}</span></h1>
             <div className="flex flex-col h-52 gap-3 border-2 rounded-lg p-2 my-2 overflow-y-auto overscroll-contain" style={{ scrollbarWidth: "thin" }}>
                 {allComments.length > 0 ?
