@@ -282,6 +282,7 @@ export default function SingUp() {
                         showConfirmButton: false,
                         timer: 2000
                     })
+                    window.location.reload();
                     navigate('/signin', { replace: true })
                 } else if (res.payload.messages.length > 0) {
                     let html = res.payload.messages.map(each => `<p>${each}</p>`).join('')
@@ -339,7 +340,7 @@ export default function SingUp() {
                     <input className="self-end mt-7 w-fit bg-teal-500 hover:bg-teal-600 py-2 px-10 rounded-lg text-lg font-semibold text-white cursor-pointer sm:text-xl" type="submit" value="Register" />
                 </form>
                 <div className="flex justify-center items-center mt-4 pt-4 border-t-2">
-                    <Google text={'signup_with'}/>
+                    <Google text={'signup_with'} />
                 </div>
             </div>
         </div>
