@@ -19,7 +19,7 @@ module.exports = {
                 'fade-bottom': {
                     '0%': {
                         opacity: '0',
-                        transform: 'translateY(-40px) scale(0.9)'
+                        transform: 'translateY(-100px) scale(0.9)'
                     },
                     '100%': {
                         opacity: '1',
@@ -29,7 +29,7 @@ module.exports = {
                 'fade-up': {
                     '0%': {
                         opacity: '0',
-                        transform: 'translateY(40px) scale(0.9)'
+                        transform: 'translateY(100px) scale(0.9)'
                     },
                     '100%': {
                         opacity: '1',
@@ -39,7 +39,7 @@ module.exports = {
                 'fade-left': {
                     '0%': {
                         opacity: '0',
-                        transform: 'translateX(140px) scale(0.9)'
+                        transform: 'translateX(240px) scale(0.9)'
                     },
                     '100%': {
                         opacity: '1',
@@ -49,7 +49,7 @@ module.exports = {
                 'fade-right': {
                     '0%': {
                         opacity: '0',
-                        transform: 'translateX(40px) scale(0.9)'
+                        transform: 'translateX(-240px) scale(0.9)'
                     },
                     '100%': {
                         opacity: '1',
@@ -60,7 +60,8 @@ module.exports = {
             animation: {
                 'fade-bottom': 'fade-bottom 0.5s',
                 'fade-up': 'fade-up 0.5s',
-                'fade-left': 'fade-left 0.5s'
+                'fade-left': 'fade-left 0.5s',
+                'fade-right': 'fade-right 0.5s'
             }
         },
     },
