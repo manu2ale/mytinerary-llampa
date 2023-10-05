@@ -8,15 +8,15 @@ const { read_carousel } = city_actions;
 
 export default function Index() {
   const dispatch = useDispatch();
-  
+
   useEffect(
     () => {
       if (carousel.length === 0) {
         dispatch(read_carousel())
       }
-    },[]
-    )
-    const carousel = useSelector(store => store.cities.carousel);
+    }, []
+  )
+  const carousel = useSelector(store => store.cities.carousel);
 
   return (
 
@@ -31,13 +31,15 @@ export default function Index() {
             lg:w-3/4
             xl:w-1/2 xl:text-center
             2xl:w-1/2'>
-          <div className='flex flex-col gap-5 justify-center items-center'>
-            <img className='w-[240px]' src="/img/greenLogo.png" alt="" />
+          <div className=' animate-fade-bottom flex flex-col gap-5 justify-center items-center'>
+            <img className='w-[240px] drop-shadow' src="/img/greenLogo.png" alt="" />
             <h1 className='italic'>Find your perfect trip, designed by insiders who know and love their cities!</h1>
           </div>
-          <h1 className='my-8 text-4xl font-bold'>Find the perfect destination</h1>
-          <p className='my-8 text-2xl text-gray-700 font-semibold'>Our app will help you find the perfect path for your next trip. With an easy-to-use interface and a host of itinerary options, planning your next trip has never been easier.</p>
-          <Button title='View More' to='/cities' />
+          <div className='animate-fade-up'>
+            <h1 className='my-8 text-4xl font-bold'>Find the perfect destination</h1>
+            <p className='my-8 text-2xl text-[#343231] font-semibold'>Our app will help you find the perfect path for your next trip. With an easy-to-use interface and a host of itinerary options, planning your next trip has never been easier.</p>
+            <Button title='View More' to='/cities' />
+          </div>
         </div>
 
         <Carousel data={carousel} />

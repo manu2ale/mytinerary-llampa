@@ -28,7 +28,7 @@ export default function Carousel({ data }) {
   }
   return (
 <>
-    <div className='relative hidden flex-grow justify-center items-center 
+    <div className='relative animate-fade-left hidden flex-grow justify-center items-center 
           sm:flex sm:grow-0 sm:w-[600px] sm:my-10
           xl:w-1/2
           '>

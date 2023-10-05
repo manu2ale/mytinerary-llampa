@@ -21,6 +21,8 @@ export default function NavBar() {
     }
   };
 
+  
+
   useEffect(() => {
     document.addEventListener('click', handleCloseMenu)
     return () => document.removeEventListener('click', handleCloseMenu)

@@ -20,9 +20,8 @@ export default function ({text}) {
                     title: 'Welcome',
                     showConfirmButton: false,
                     timer: 2000
-                })
-                window.location.reload();
-                navigate(-1, { replace: true })
+                });
+                navigate(-1, { replace: true });
             }
         })
         .catch(err => console.log(err))
