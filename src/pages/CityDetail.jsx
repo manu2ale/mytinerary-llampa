@@ -25,17 +25,17 @@ export default function CityDetail() {
 
   return (
     <>
-      <div className='flex min-h-screen flex-auto flex-col justify-center items-center py-4 bg-cover bg-center text-white md:py-0' style={{backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),url(${city.photo})`}}>
+      <div className='flex grow flex-col justify-center items-center bg-cover bg-center bg-fixed text-white pt-[50px] sm:pt-[70px]' style={{backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),url(${city.photo})`}}>
           <h1 className="text-5xl font-bold md:text-6xl">{city.city}</h1>
-          <p className="py-12 px-2 text-xl font-medium w-[360px] 
-                        md:text-2xl md:w-[762px] sm:px-0 sm:w-10/12
+          <p className="pt-2 pb-6 px-2 text-xl w-[360px] 
+                        md:text-2xl md:w-[768px] sm:px-0 sm:w-10/12
           ">{city.description}</p>
-          <div className="flex gap-12">
+          <div className="flex gap-12 pb-2">
             <Button title='Back to cities' to='/cities'/>
             <a  onClick={()=>setShow(!show)} href="#itineraries" className="py-3 px-2 bg-teal-500 hover:bg-teal-600 rounded-lg  text-lg text-white sm:text-2xl sm:px-12">{show ? "Hide ↑":'View Itineraries ↓'} </a>
           </div>
-      </div>
           {show && <ShowItineraries data={itineraries}/>}
+      </div>
     </>
   )
 }

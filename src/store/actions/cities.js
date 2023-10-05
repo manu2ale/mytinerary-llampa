@@ -6,7 +6,7 @@ const read_carousel = createAsyncThunk(
     'read_carousel',
     async ()=> {
         try {
-            let data = await axios(apiURL+'/cities/carousel')
+            let data = await axios(apiURL+'cities/carousel')
             // console.log(data)
             return {
                 carousel: data.data.data_carousel

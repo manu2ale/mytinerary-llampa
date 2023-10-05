@@ -20,7 +20,7 @@ export default function Index() {
 
   return (
 
-    <main className="flex grow justify-center items-center bg-cover bg-center pt-[50px] sm:pt-[60px] lg:pt-[70px]" style={{ backgroundImage: `url(${'../img/index.jpg'})` }}>
+    <main className="flex grow justify-center items-center bg-cover bg-center pt-[50px] sm:pt-[70px]" style={{ backgroundImage: `url(${'../img/index.jpg'})` }}>
       <section className='flex flex-wrap bg-teal-100/50 backdrop-blur-sm rounded-xl px-2 font-bold text-lg justify-center items-center  
             lg:py-2
             xl:w-[95%]
