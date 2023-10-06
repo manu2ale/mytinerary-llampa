@@ -6,15 +6,6 @@ module.exports = {
     ],
     theme: {
         extend: {
-            // keyframes: {
-            //     'fade-down':{
-            //         '0%': { opacity: '0'},
-            //         '100%': { opacity: '1'}
-            //         }
-            //     },
-            // animation: {
-            //     'fade-down': 'fade-down 1.5s ease-in'
-            // }
             keyframes: {
                 'fade-bottom': {
                     '0%': {

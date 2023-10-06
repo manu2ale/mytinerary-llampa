@@ -5,26 +5,29 @@ import user_actions from "../store/actions/users";
 const { google } = user_actions;
 import Swal from "sweetalert2";
 
-export default function ({text}) {
+export default function ({ text }) {
     let dispatch = useDispatch();
     const navigate = useNavigate();
     let googleButton = useRef();
     const handleCredentialResponse = async (response) => {
         const data = { token_google: response.credential };
         dispatch(google(data))
-        .then(res => {
-            if (res.payload.token) {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Welcome',
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-                navigate(-1, { replace: true });
-            }
-        })
-        .catch(err => console.log(err))
+            .then(res => {
+                if (res.payload.token) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Welcome',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 100);
+                    navigate(-1, { replace: true });
+                }
+            })
+            .catch(err => console.log(err))
     };
     useEffect(() => {
         // window.onload = function () {
@@ -36,7 +39,7 @@ export default function ({text}) {
             });
             window.google.accounts.id.renderButton(
                 googleButton.current,
-                { theme: "filled_white", size: "large", type: "standard", text: text, shape: "pill", locale:"en-EN"}
+                { theme: "filled_white", size: "large", type: "standard", text: text, shape: "pill", locale: "en-EN" }
             );
         };
     }, []);

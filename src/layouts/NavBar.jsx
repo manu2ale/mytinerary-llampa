@@ -21,7 +21,7 @@ export default function NavBar() {
     }
   };
 
-  
+
 
   useEffect(() => {
     document.addEventListener('click', handleCloseMenu)
@@ -59,15 +59,15 @@ export default function NavBar() {
     >
       <nav className="flex select-none flex-wrap font-bold text-lg w-full justify-between items-center
             xl:w-[95%]
-            2xl:w-[80%]"
-      >
+            2xl:w-[80%]">
         <Anchor to='/home'><img className='w-[120px] ml-2 hover:drop-shadow-md' src="/img/logo.png" alt="LogoNav" /></Anchor>
 
+        {/* Hamburg Menu */}
         <svg onClick={() => setShow(!show)} className="w-9 h-9 me-2 cursor-pointer sm:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
         {show && (
-          <ul onClick={() => setShow(!show)} className="absolute z-10 top-[50px] flex flex-col justify-center items-center w-full gap-1 py-2 bg-white sm:hidden">
+          <ul onClick={() => setShow(!show)} className="absolute z-10 top-[50px] flex flex-col justify-center items-center w-full gap-1 py-2 animate-fade-left divide-y-2 bg-white sm:hidden">
             <li className='flex w-full'><Anchor className="w-full text-center" to='/'>Home</Anchor></li>
             <li className='flex w-full'><Anchor className="w-full text-center" to='/cities'>Cities</Anchor></li>
             {name ?
@@ -80,14 +80,14 @@ export default function NavBar() {
               </>
               :
               <>
-                <li className='flex w-full'><Anchor to={'/signin'} className="w-full bg-[#4F46E5] py-2 px-5 text-white text-center">Sign In</Anchor></li>
-                <li className='flex w-full'><Anchor to={'/signup'} className="w-full bg-[#4F46E5] py-2 px-5 text-white text-center">Sign Up</Anchor></li>
+                <li className='flex w-full'><Anchor to={'/signin'} className="w-full text-center">Sign In</Anchor></li>
+                <li className='flex w-full'><Anchor to={'/signup'} className="w-full text-center">Sign Up</Anchor></li>
               </>
             }
           </ul>
-        )
-        }
+        )}
 
+        {/* Full menu */}
         <ul className="hidden 
             sm:flex sm:items-center"
         >

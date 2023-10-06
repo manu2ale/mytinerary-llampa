@@ -38,8 +38,9 @@ export default function Cities() {
         {cities.length > 0 ?
           (cities.map(each => <CardCity key={each._id} city={each.city} imgUrl={each.photo} country={each.country} id={each._id} />))
           :
-          (<div className="text-center text-xl">
-            <p className="pb-8">We couldn't find anything</p>
+          (<div className="text-center flex flex-col justify-center items-center text-xl backdrop-blur text-white">
+            <img className="animate-pulse" src="https://i.im.ge/2023/09/01/w73EfY.no-itineraries.png" alt="Not Found" />
+            <p className="text-2xl">We couldn't find anything</p>
             <p>You may want to try using different keywords or checking for spelling mistakes.</p>
           </div>)
         }
