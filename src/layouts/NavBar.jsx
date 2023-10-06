@@ -21,8 +21,6 @@ export default function NavBar() {
     }
   };
 
-
-
   useEffect(() => {
     document.addEventListener('click', handleCloseMenu)
     return () => document.removeEventListener('click', handleCloseMenu)
@@ -39,7 +37,9 @@ export default function NavBar() {
             showConfirmButton: false,
             timer: 2000
           })
-          window.location.reload()
+          setTimeout(function () {
+            window.location.reload();
+          }, 100);
           navigate('/')
         } else if (res.payload.messages.length > 0) {
           let html = res.payload.messages.map(each => `<p>${each}</p>`).join('')
@@ -63,25 +63,22 @@ export default function NavBar() {
         <Anchor to='/home'><img className='w-[120px] ml-2 hover:drop-shadow-md' src="/img/logo.png" alt="LogoNav" /></Anchor>
 
         {/* Hamburg Menu */}
-        <svg onClick={() => setShow(!show)} className="w-9 h-9 me-2 cursor-pointer sm:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        <svg onClick={() => setShow(!show)} className="w-9 h-9 me-2 cursor-pointer sm:hidden bg-teal-500 rounded-md" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white">
+          <path strokeLinecap="round" strokeLinejoin="round" d={show ? "M6 18L18 6M6 6l12 12" : "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"} />
         </svg>
         {show && (
-          <ul onClick={() => setShow(!show)} className="absolute z-10 top-[50px] flex flex-col justify-center items-center w-full gap-1 py-2 animate-fade-left divide-y-2 bg-white sm:hidden">
-            <li className='flex w-full'><Anchor className="w-full text-center" to='/'>Home</Anchor></li>
-            <li className='flex w-full'><Anchor className="w-full text-center" to='/cities'>Cities</Anchor></li>
+          <ul onClick={() => setShow(!show)} className="absolute z-10 top-[50px] flex flex-col justify-center items-center w-full animate-fade-left divide-y-2 bg-white sm:hidden">
+            <li className='flex w-full'><Anchor className="w-full text-center py-2" to='/'>Home</Anchor></li>
+            <li className='flex w-full'><Anchor className="w-full text-center py-2" to='/cities'>Cities</Anchor></li>
             {name ?
               <>
-                <li className='flex w-full'><Anchor onClick={() => dispatch(signout())} className="w-full bg-[#4F46E5] py-2 px-5 text-white text-center">Log Out</Anchor></li>
-                <li>
-                  <span>{name}</span>
-                  <img src={photo} alt="Profile photo" className='inline rounded-full ml-2 object-cover w-14 h-14' />
-                </li>
+                <li className='flex w-full'><Anchor to={'/profile'} className="w-full text-center py-2">Profile</Anchor></li>
+                <li className='flex w-full'><Anchor onClick={logout} className="w-full py-2 text-rose-600 text-center">Log Out</Anchor></li>
               </>
               :
               <>
-                <li className='flex w-full'><Anchor to={'/signin'} className="w-full text-center">Sign In</Anchor></li>
-                <li className='flex w-full'><Anchor to={'/signup'} className="w-full text-center">Sign Up</Anchor></li>
+                <li className='flex w-full'><Anchor to={'/signin'} className="w-full text-center py-2">Sign In</Anchor></li>
+                <li className='flex w-full'><Anchor to={'/signup'} className="w-full text-center py-2">Sign Up</Anchor></li>
               </>
             }
           </ul>

@@ -26,8 +26,8 @@ export default function CityDetail() {
   return (
     <>
       <div className='flex grow flex-col justify-center items-center bg-cover bg-center bg-fixed text-white pt-[50px] sm:pt-[70px]' style={{backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),url(${city.photo})`}}>
-          <h1 className="text-5xl font-bold md:text-6xl">{city.city}</h1>
-          <p className="pt-2 pb-6 px-2 text-xl w-[360px] font-semibold
+          <h1 className="text-5xl font-bold md:text-6xl animate-fade-bottom">{city.city}</h1>
+          <p className="pt-2 pb-6 px-2 text-xl w-[360px] font-semibold animate-fade-up
                         md:text-2xl md:w-[768px] sm:px-0 sm:w-10/12
           ">{city.description}</p>
           <div className="flex gap-12 pb-2">
